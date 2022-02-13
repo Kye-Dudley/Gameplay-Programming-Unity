@@ -28,6 +28,7 @@ public class TutorialPlayerController : MonoBehaviour
     {
         if(movingOnGround == true)
         {
+            movingOnGround = false;
             rb.AddForce(Vector3.up * jumpHeight);
         }
     }
@@ -36,6 +37,13 @@ public class TutorialPlayerController : MonoBehaviour
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
+        if(movement == Vector3.zero)
+        {
+            if(movingOnGround == true)
+            {
+                rb.velocity = Vector3.zero;
+            }
+        }
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.position + Vector3.down * 1.3F, out hit))
