@@ -29,7 +29,6 @@ public class TutorialPlayerController : MonoBehaviour
         if(movingOnGround == true)
         {
             rb.AddForce(Vector3.up * jumpHeight);
-            movingOnGround = false;
         }
     }
 
@@ -39,7 +38,7 @@ public class TutorialPlayerController : MonoBehaviour
         rb.AddForce(movement * speed);
 
         RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, this.transform.position + Vector3.down * 1.3F, out hit))
+        if (Physics.Raycast(transform.position, transform.position + Vector3.down * 1.3F, out hit))
         {
             Debug.Log("Moving On Ground");
             movingOnGround = true;
@@ -48,6 +47,6 @@ public class TutorialPlayerController : MonoBehaviour
         {
             movingOnGround = false;
         }
-        Debug.DrawLine(this.transform.position, this.transform.position + Vector3.down * 1.3F, Color.red, 0, false);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.3F, Color.red, 0, false);
     }
 }
