@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
     float cameraHeading = 0;
     float cameraTilt = 15;
     float camDistance = 10;
+    float playerHeight = 1.5F;
 
     private void OnLook(InputValue lookValue)
     {
@@ -23,6 +24,6 @@ public class CameraMovement : MonoBehaviour
         cameraHeading += lookVector.x * Time.deltaTime * cameraSensitivityX;
         camera.transform.rotation = Quaternion.Euler(cameraTilt, cameraHeading, 0);
 
-        camera.transform.position = this.transform.position - camera.transform.forward * camDistance;
+        camera.transform.position = this.transform.position - camera.transform.forward * camDistance + Vector3.up * playerHeight;
     }
 }

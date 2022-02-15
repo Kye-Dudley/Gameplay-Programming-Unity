@@ -14,7 +14,7 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController controller;
     Vector2 movementVector;
     public float movementSpeed = 5;
-    public float acceleration = 2;
+    public float acceleration = 10;
     public float rotationSpeed = 10;
 
     //Physics

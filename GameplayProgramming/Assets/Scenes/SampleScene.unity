@@ -1087,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.17128967, y: -0, z: -0, w: 0.98522073}
-  m_LocalPosition: {x: 0, y: 4.11, z: -7.84}
+  m_LocalPosition: {x: 0, y: 2.87, z: -3.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 963194228}
   movementSpeed: 5
-  acceleration: 2
+  acceleration: 10
   rotationSpeed: 10
 --- !u!143 &2079325967
 CharacterController:
