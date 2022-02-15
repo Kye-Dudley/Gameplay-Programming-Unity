@@ -9,7 +9,7 @@ public class TutorialPlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float speed = 1;
-    private bool movingOnGround;
+    public bool movingOnGround;
     public float jumpHeight = 400;
 
     void Start()
@@ -37,16 +37,10 @@ public class TutorialPlayerController : MonoBehaviour
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
-        if(movement == Vector3.zero)
-        {
-            if(movingOnGround == true)
-            {
-                rb.velocity = Vector3.zero;
-            }
-        }
+
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.position + Vector3.down * 1.3F, out hit))
+        if (Physics.Raycast(transform.position,Vector3.down, out hit,Mathf.Infinity,LayerMask.GetMask("Ground")))
         {
             Debug.Log("Moving On Ground");
             movingOnGround = true;
