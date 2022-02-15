@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform player;
+    public Transform camera;
 
     public float cameraSensitivityX = 180;
     private Vector2 lookVector;
@@ -21,8 +21,8 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         cameraHeading += lookVector.x * Time.deltaTime * cameraSensitivityX;
-        transform.rotation = Quaternion.Euler(cameraTilt, cameraHeading, 0);
+        camera.transform.rotation = Quaternion.Euler(cameraTilt, cameraHeading, 0);
 
-        transform.position = player.position - transform.forward * camDistance;
+        camera.transform.position = this.transform.position - camera.transform.forward * camDistance;
     }
 }
