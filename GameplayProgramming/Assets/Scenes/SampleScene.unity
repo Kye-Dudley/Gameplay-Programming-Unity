@@ -1671,6 +1671,7 @@ GameObject:
   - component: {fileID: 2079325967}
   - component: {fileID: 2079325966}
   - component: {fileID: 2079325970}
+  - component: {fileID: 2079325971}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1694,6 +1695,7 @@ MonoBehaviour:
   movementSpeed: 5
   acceleration: 10
   rotationSpeed: 10
+  jumpHeight: 10
   gravity: 9.81
 --- !u!143 &2079325967
 CharacterController:
@@ -1773,3 +1775,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 963194228}
   cameraSensitivityX: 180
+  cameraSensitivityY: 180
+--- !u!114 &2079325971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079325965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25302057bfa92e847831d13fb4bbdf55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
