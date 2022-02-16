@@ -16,10 +16,15 @@ public class CharacterMovement : MonoBehaviour
     public float movementSpeed = 5;
     public float acceleration = 10;
     public float rotationSpeed = 10;
+    public float jumpHeight = 10;
+    private bool jumpInput;
 
     //Physics
     Vector3 intendedDirection;
     Vector3 velocity;
+    Vector3 velocityXZ;
+    public float gravity = 9.81f;
+    bool MovingOnGround = false;
 
     private void Start()
     {
@@ -33,17 +38,30 @@ public class CharacterMovement : MonoBehaviour
         movementVector = movementValue.Get<Vector2>();
     }
 
+    private void OnJump()
+    {
+        jumpInput = true;
+    }
+
     private void Update()
     {
         calculateInput();
         calculateCamera();
-        movePlayer();
+        calculateGround();
+        calculateMovement();
+        calculateGravity();
+//        calculateJump();
+        if(jumpInput == true)
+        {
+            calculateJump();
+        }
+
+        //Update the player's movement after movePlayer() has been updated.
+        controller.Move(velocity * Time.deltaTime);
     }
 
     void calculateInput()
     {
-        //Rotate our camera. cameraSensitivity# is the degrees per second.
-
 
         //Clamp the vector so it can only reach a maximum of 1.
         movementVector = Vector2.ClampMagnitude(movementVector, 1);
@@ -61,7 +79,22 @@ public class CharacterMovement : MonoBehaviour
         camR = camR.normalized;
     }
 
-    void movePlayer()
+    void calculateGround()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 0.2f))
+        {
+            MovingOnGround = true;
+        }
+        else
+        {
+            MovingOnGround = false;
+            jumpInput = false;
+        }
+    }
+    
+
+    void calculateMovement()
     {
         //Moves the player.
         //transform.position += new Vector3(movementVector.x, 0, movementVector.y) * Time.deltaTime * movementSpeed;
@@ -75,8 +108,35 @@ public class CharacterMovement : MonoBehaviour
             Quaternion rot = Quaternion.LookRotation(intendedDirection);
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
         }
-        velocity = Vector3.Lerp(velocity, transform.forward * movementVector.magnitude * movementSpeed, acceleration * Time.deltaTime);
-        controller.Move(velocity * Time.deltaTime);
 
+        //Movement is only on the X and Y. Seperates the Y axis for gravity.
+        velocityXZ = velocity;
+        velocityXZ.y = 0;
+        velocityXZ = Vector3.Lerp(velocityXZ, transform.forward * movementVector.magnitude * movementSpeed, acceleration * Time.deltaTime);
+        velocity = new Vector3(velocityXZ.x, velocity.y, velocityXZ.z);
+    }
+
+    void calculateGravity()
+    {
+        if (MovingOnGround == true)
+        {
+            //reset velocity.y. Keep the value low-ish so the player can move down slopes.
+            velocity.y = -1f;
+        }
+        else
+        {
+            //begin moving the player down when they are not on the ground.
+            velocity.y -= gravity * Time.deltaTime;
+        }
+        //Clamp the gravity so the player can't fall too fast.
+        velocity.y = Mathf.Clamp(velocity.y, -10, Mathf.Infinity);
+    }
+
+    void calculateJump()
+    {
+        if (MovingOnGround == true)
+        {
+            velocity.y = jumpHeight;
+        }
     }
 }

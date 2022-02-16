@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 310351742}
   - component: {fileID: 310351741}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ForwardsCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25146
+  m_Name: pb_Mesh25070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,8 +1090,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 2.87, z: -3.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 2079325968}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 19.726, y: 0, z: 0}
 --- !u!1 &1199002802
 GameObject:
@@ -1404,7 +1404,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25100
+  m_Name: pb_Mesh25016
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1694,6 +1694,7 @@ MonoBehaviour:
   movementSpeed: 5
   acceleration: 10
   rotationSpeed: 10
+  gravity: 9.81
 --- !u!143 &2079325967
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1720,10 +1721,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079325965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.17, z: -0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 479988862}
+  - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1769,5 +1771,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5977ce476d907b44d8d151fdcf0abd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 963194228}
+  Camera: {fileID: 963194228}
   cameraSensitivityX: 180

@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform camera;
+    public Transform Camera;
 
     public float cameraSensitivityX = 180;
+    public float cameraSensitivityY = 180;
     private Vector2 lookVector;
     float cameraHeading = 0;
     float cameraTilt = 15;
@@ -19,11 +20,15 @@ public class CameraMovement : MonoBehaviour
         lookVector = lookValue.Get<Vector2>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        //Calculate Camera X and Y
         cameraHeading += lookVector.x * Time.deltaTime * cameraSensitivityX;
-        camera.transform.rotation = Quaternion.Euler(cameraTilt, cameraHeading, 0);
+        cameraTilt += -lookVector.y * Time.deltaTime * cameraSensitivityY;
 
-        camera.transform.position = this.transform.position - camera.transform.forward * camDistance + Vector3.up * playerHeight;
+        cameraTilt = Mathf.Clamp(cameraTilt, -80, 80);
+        Camera.transform.rotation = Quaternion.Euler(cameraTilt, cameraHeading, 0);
+
+        Camera.transform.position = this.transform.position - Camera.transform.forward * camDistance + Vector3.up * playerHeight;
     }
 }
