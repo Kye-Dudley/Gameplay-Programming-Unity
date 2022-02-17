@@ -26,6 +26,9 @@ public class CharacterMovement : MonoBehaviour
     public float gravity = 9.81f;
     bool MovingOnGround = false;
 
+    private float cyoteTime = 1;
+    private float cyoteTimeCounter;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -67,6 +70,9 @@ public class CharacterMovement : MonoBehaviour
 
         //Update the player's movement after movePlayer() has been updated.
         controller.Move(velocity * Time.deltaTime);
+
+        jumpInput = false;
+        Debug.Log(cyoteTimeCounter);
     }
 
     void calculateInput()
@@ -96,15 +102,15 @@ public class CharacterMovement : MonoBehaviour
 
         {
             MovingOnGround = true;
+            cyoteTimeCounter = 0;
         }
         else
         {
             MovingOnGround = false;
-            jumpInput = false;
+            cyoteTimeCounter = Time.deltaTime;
         }
     }
     
-
     void calculateMovement()
     {
         //Moves the player.
@@ -145,7 +151,7 @@ public class CharacterMovement : MonoBehaviour
 
     void calculateJump()
     {
-        if (MovingOnGround == true)
+        if (cyoteTimeCounter < cyoteTime)
         {
             velocity.y = jumpHeight;
         }
