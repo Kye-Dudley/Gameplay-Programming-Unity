@@ -90,8 +90,10 @@ public class CharacterMovement : MonoBehaviour
 
     void calculateGround()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 0.2f))
+//        RaycastHit hit;
+//        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 0.2f))
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+
         {
             MovingOnGround = true;
         }
