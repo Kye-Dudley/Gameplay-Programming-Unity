@@ -129,7 +129,7 @@ public class CharacterMovement : MonoBehaviour
             velocity.y -= gravity * Time.deltaTime;
         }
         //Clamp the gravity so the player can't fall too fast.
-        velocity.y = Mathf.Clamp(velocity.y, -10, Mathf.Infinity);
+        velocity.y = Mathf.Clamp(velocity.y, -50, Mathf.Infinity);
     }
 
     void calculateJump()
