@@ -56,6 +56,15 @@ public class CharacterMovement : MonoBehaviour
             calculateJump();
         }
 
+        //Resets the player's velocity when they hit a ceiling. 
+        if ((controller.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            if (velocity.y > 0)
+            {
+                velocity.y = -1;
+            }
+        }
+
         //Update the player's movement after movePlayer() has been updated.
         controller.Move(velocity * Time.deltaTime);
     }
