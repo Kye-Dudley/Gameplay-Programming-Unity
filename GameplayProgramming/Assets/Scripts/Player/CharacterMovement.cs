@@ -26,8 +26,10 @@ public class CharacterMovement : MonoBehaviour
     public float gravity = 9.81f;
     bool MovingOnGround = false;
 
-    private float cyoteTime = 1;
-    private float cyoteTimeCounter;
+    private float cyoteTime = 0.2f;
+    private float jumpBuffer = 0.1f;
+    private float jumpBufferTimer;
+    private float playerAirTime;
 
     private void Start()
     {
@@ -53,8 +55,18 @@ public class CharacterMovement : MonoBehaviour
         calculateGround();
         calculateMovement();
         calculateGravity();
-//        calculateJump();
-        if(jumpInput == true)
+        //        calculateJump();
+        if (jumpInput == true)
+        {
+            //jumpBufferTimer = jumpBuffer;
+            jumpBufferTimer = jumpBuffer;
+        }
+        else
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+
+        if(jumpBufferTimer > 0)
         {
             calculateJump();
         }
@@ -72,7 +84,6 @@ public class CharacterMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         jumpInput = false;
-        Debug.Log(cyoteTimeCounter);
     }
 
     void calculateInput()
@@ -101,13 +112,13 @@ public class CharacterMovement : MonoBehaviour
         if ((controller.collisionFlags & CollisionFlags.Below) != 0)
 
         {
+            playerAirTime = 0;
             MovingOnGround = true;
-            cyoteTimeCounter = 0;
         }
         else
         {
             MovingOnGround = false;
-            cyoteTimeCounter = Time.deltaTime;
+            playerAirTime += Time.deltaTime;
         }
     }
     
@@ -151,8 +162,10 @@ public class CharacterMovement : MonoBehaviour
 
     void calculateJump()
     {
-        if (cyoteTimeCounter < cyoteTime)
+        if (playerAirTime < cyoteTime)
         {
+            playerAirTime = cyoteTime;
+            jumpBufferTimer = 0f;
             velocity.y = jumpHeight;
         }
     }
