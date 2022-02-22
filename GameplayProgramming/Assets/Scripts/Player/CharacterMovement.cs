@@ -55,6 +55,7 @@ public class CharacterMovement : MonoBehaviour
         calculateGround();
         calculateMovement();
         calculateGravity();
+
         //        calculateJump();
         if (jumpInput == true)
         {
