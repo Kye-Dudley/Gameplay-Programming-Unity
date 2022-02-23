@@ -12,8 +12,8 @@ public class CameraMovement : MonoBehaviour
     private Vector2 lookVector;
     float cameraHeading = 0;
     float cameraTilt = 15;
-    float camDistance = 10;
-    float playerHeight = 1.5F;
+    public float camDistance = 10;
+    public float playerHeight = 1.5F;
 
     private void OnLook(InputValue lookValue)
     {

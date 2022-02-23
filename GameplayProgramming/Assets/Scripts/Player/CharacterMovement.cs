@@ -25,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 velocityXZ;
     public float gravity = 9.81f;
     bool MovingOnGround = false;
+    bool resetGrav;
 
     private float cyoteTime = 0.15f;
     private float jumpBuffer = 0.1f;
@@ -159,10 +160,16 @@ public class CharacterMovement : MonoBehaviour
         if (MovingOnGround == true)
         {
             //reset velocity.y. Keep the value low-ish so the player can move down slopes.
-            velocity.y = -2.5f;
+            velocity.y = -15f;
+            resetGrav = true;
         }
         else
         {
+            if (resetGrav == true)
+            {
+                velocity.y = -1f;
+                resetGrav = false;
+            }
             //begin moving the player down when they are not on the ground.
             velocity.y -= gravity * Time.deltaTime;
         }
@@ -174,6 +181,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (playerAirTime < cyoteTime)
         {
+            resetGrav = false;
+
             playerAirTime = cyoteTime;
             jumpBufferTimer = 0f;
             velocity.y = jumpHeight;
