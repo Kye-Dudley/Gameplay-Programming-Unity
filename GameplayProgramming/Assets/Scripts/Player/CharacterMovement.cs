@@ -13,12 +13,14 @@ public class CharacterMovement : MonoBehaviour
     //Movement
     private CharacterController controller;
     Vector2 movementVector;
-    public float movementSpeed = 5;
+    private float movementSpeed;
     public float acceleration = 10;
     public float rotationSpeed = 10;
     public float jumpHeight = 10;
     private bool jumpInput;
     private bool isSliding;
+    public float groundSpeed = 10;
+    public float airControl = 7;
 
     //Physics
     Vector3 intendedDirection;
@@ -62,6 +64,15 @@ public class CharacterMovement : MonoBehaviour
         calculateMovement();
         calculateGravity();
         updateAnimations();
+
+        if(MovingOnGround == true)
+        {
+            movementSpeed = groundSpeed;
+        }
+        else
+        {
+            movementSpeed = airControl;
+        }
 
         if (jumpInput == true)
         {
