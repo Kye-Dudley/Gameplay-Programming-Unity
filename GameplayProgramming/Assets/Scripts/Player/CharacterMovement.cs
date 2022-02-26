@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     public float rotationSpeed = 10;
     public float jumpHeight = 10;
     private bool jumpInput;
+    private bool isSliding;
 
     //Physics
     Vector3 intendedDirection;
@@ -33,6 +34,8 @@ public class CharacterMovement : MonoBehaviour
     private float playerAirTime;
 
     private Animator animator;
+
+    private Vector3 normalHitAngle;
 
     private void Start()
     {
@@ -56,14 +59,12 @@ public class CharacterMovement : MonoBehaviour
     {
         calculateInput();
         calculateCamera();
-        calculateGround();
         calculateMovement();
         calculateGravity();
         updateAnimations();
-        //        calculateJump();
+
         if (jumpInput == true)
         {
-            //jumpBufferTimer = jumpBuffer;
             jumpBufferTimer = jumpBuffer;
         }
         else
@@ -71,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
             jumpBufferTimer -= Time.deltaTime;
         }
 
-        if(jumpBufferTimer > 0)
+        if (jumpBufferTimer > 0)
         {
             calculateJump();
         }
@@ -85,8 +86,26 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
+        //Sliding Down Slopes
+        if (controller.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit slope, 5f))
+        {
+            normalHitAngle = slope.normal;
+            if (Vector3.Angle(normalHitAngle, Vector3.up) > controller.slopeLimit)
+            {
+                Debug.Log("Slide!");
+                velocity += new Vector3(normalHitAngle.x, -normalHitAngle.y, normalHitAngle.z);
+                isSliding = true;
+            }
+            else if (MovingOnGround == true)
+            {
+                isSliding = false;
+            }
+        }
+
         //Update the player's movement after movePlayer() has been updated.
         controller.Move(velocity * Time.deltaTime);
+
+        calculateGround();
 
         jumpInput = false;
     }
@@ -94,6 +113,7 @@ public class CharacterMovement : MonoBehaviour
     void updateAnimations()
     {
         animator.SetFloat("MovSpeed", controller.velocity.magnitude);
+        animator.SetFloat("FallSpeed", velocity.y);
         animator.SetBool("OnGround", MovingOnGround);
     }
 
@@ -118,8 +138,6 @@ public class CharacterMovement : MonoBehaviour
 
     void calculateGround()
     {
-//        RaycastHit hit;
-//        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 0.2f))
         if ((controller.collisionFlags & CollisionFlags.Below) != 0)
 
         {
