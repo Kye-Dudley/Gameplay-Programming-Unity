@@ -18,7 +18,6 @@ public class CharacterMovement : MonoBehaviour
     public float rotationSpeed = 10;
     public float jumpHeight = 10;
     private bool jumpInput;
-    private bool isSliding;
     public float groundSpeed = 10;
     public float airControl = 7;
 
@@ -103,13 +102,7 @@ public class CharacterMovement : MonoBehaviour
             normalHitAngle = slope.normal;
             if (Vector3.Angle(normalHitAngle, Vector3.up) > controller.slopeLimit)
             {
-                Debug.Log("Slide!");
-                velocity += new Vector3(normalHitAngle.x, -normalHitAngle.y, normalHitAngle.z);
-                isSliding = true;
-            }
-            else if (MovingOnGround == true)
-            {
-                isSliding = false;
+                velocity += new Vector3(normalHitAngle.x /1.5f, -normalHitAngle.y, normalHitAngle.z /1.5f);
             }
         }
 
