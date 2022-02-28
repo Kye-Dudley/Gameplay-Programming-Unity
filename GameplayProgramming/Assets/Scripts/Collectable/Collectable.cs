@@ -10,6 +10,7 @@ public class Collectable : MonoBehaviour
         DoubleJump,
         SpeedBoost
     };
+    [SerializeField]
     collectableTypes Type;
 
     private void OnTriggerEnter(Collider other)
