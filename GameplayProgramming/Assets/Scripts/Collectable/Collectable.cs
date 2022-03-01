@@ -14,11 +14,13 @@ public class Collectable : MonoBehaviour
     collectableTypes Type;
     GameObject player;
     PlayerPowerUpManager powerUpManager;
+    PlayerScoreManager scoreManager;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         powerUpManager = player.GetComponent<PlayerPowerUpManager>();
+        scoreManager = player.GetComponent<PlayerScoreManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +30,7 @@ public class Collectable : MonoBehaviour
             switch(Type)
             {
                 case collectableTypes.Coin:
-                    //Coin collected
+                    scoreManager.increaseScore(1);
                     break;
                 case collectableTypes.DoubleJump:
                     powerUpManager.activateDoubleJump();

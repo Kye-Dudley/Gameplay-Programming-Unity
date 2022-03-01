@@ -4611,7 +4611,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh40076
+  m_Name: pb_Mesh36164
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13260,6 +13260,8 @@ GameObject:
   - component: {fileID: 2079325970}
   - component: {fileID: 2079325971}
   - component: {fileID: 2079325972}
+  - component: {fileID: 2079325973}
+  - component: {fileID: 2079325974}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13393,6 +13395,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d2a907dd810364cb04cdc9ab5cd44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2079325973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079325965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b968497a57d7b4da3bdc57317604f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2079325974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079325965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f27940e72ea8245b7ec59b8e8c60cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!43 &2120721084
 Mesh:
   m_ObjectHideFlags: 0

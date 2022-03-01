@@ -20,6 +20,8 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpInput;
     public float groundSpeed = 10;
     public float airControl = 7;
+    float JumpCount;
+    public float maxJumpCount;
 
     //Physics
     Vector3 intendedDirection;
@@ -73,6 +75,7 @@ public class CharacterMovement : MonoBehaviour
             movementSpeed = airControl;
         }
 
+
         if (jumpInput == true)
         {
             jumpBufferTimer = jumpBuffer;
@@ -86,6 +89,7 @@ public class CharacterMovement : MonoBehaviour
         {
             calculateJump();
         }
+
 
         //Resets the player's velocity when they hit a ceiling. 
         if ((controller.collisionFlags & CollisionFlags.Above) != 0)
@@ -147,6 +151,7 @@ public class CharacterMovement : MonoBehaviour
         {
             playerAirTime = 0;
             MovingOnGround = true;
+            JumpCount = maxJumpCount;
         }
         else
         {
@@ -201,10 +206,10 @@ public class CharacterMovement : MonoBehaviour
 
     void calculateJump()
     {
-        if (playerAirTime < cyoteTime)
+        if ((playerAirTime < cyoteTime) || (JumpCount > 0))
         {
+            JumpCount = JumpCount - 1;
             resetGrav = false;
-
             playerAirTime = cyoteTime;
             jumpBufferTimer = 0f;
             velocity.y = jumpHeight;
