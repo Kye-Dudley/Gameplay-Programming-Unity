@@ -33,10 +33,10 @@ public class CharacterMovement : MonoBehaviour
     private float jumpBuffer = 0.1f;
     private float jumpBufferTimer;
     private float playerAirTime;
-
-    private Animator animator;
-
     private Vector3 normalHitAngle;
+
+    //Animation
+    private Animator animator;
 
     private void Start()
     {

@@ -12,6 +12,14 @@ public class Collectable : MonoBehaviour
     };
     [SerializeField]
     collectableTypes Type;
+    GameObject player;
+    PlayerPowerUpManager powerUpManager;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        powerUpManager = player.GetComponent<PlayerPowerUpManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,13 +28,13 @@ public class Collectable : MonoBehaviour
             switch(Type)
             {
                 case collectableTypes.Coin:
-                    Debug.Log("Increase Score");
+                    //Coin collected
                     break;
                 case collectableTypes.DoubleJump:
-                    Debug.Log("Enable Double Jump");
+                    powerUpManager.activateDoubleJump();
                     break;
                 case collectableTypes.SpeedBoost:
-                    Debug.Log("Enable Speed Boost");
+                    powerUpManager.activateSpeedBoost();
                     break;
             }
             Destroy(this.gameObject);
