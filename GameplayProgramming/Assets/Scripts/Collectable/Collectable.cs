@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
+    private bool collected = false;
+    private float Timer = 0;
+
     enum collectableTypes
     {
         Coin,
@@ -27,23 +30,37 @@ public class Collectable : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            switch(Type)
+            if(collected == false)
             {
-                case collectableTypes.Coin:
-                    scoreManager.increaseScore(1);
-                    break;
-                case collectableTypes.DoubleJump:
-                    powerUpManager.activateDoubleJump();
-                    break;
-                case collectableTypes.SpeedBoost:
-                    powerUpManager.activateSpeedBoost();
-                    break;
+                switch (Type)
+                {
+                    case collectableTypes.Coin:
+                        scoreManager.increaseScore(1);
+                        break;
+                    case collectableTypes.DoubleJump:
+                        powerUpManager.activateDoubleJump();
+                        break;
+                    case collectableTypes.SpeedBoost:
+                        powerUpManager.activateSpeedBoost();
+                        break;
+                }
+                Destroy(GetComponent<Collider>());
+                Destroy(GetComponentInChildren<MeshRenderer>());
+                GetComponentInChildren<ParticleSystem>().Play();
+                collected = true;
             }
-            Destroy(this.gameObject);
         }
     }
     private void FixedUpdate()
     {
         transform.Rotate(0, 3, 0);
+        if(collected == true)
+        {
+            Timer = Timer + Time.deltaTime;
+            if(Timer > 1)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
