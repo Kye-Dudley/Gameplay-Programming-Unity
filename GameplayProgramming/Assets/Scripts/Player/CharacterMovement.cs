@@ -20,8 +20,10 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpInput;
     public float groundSpeed = 10;
     public float airControl = 7;
-    float JumpCount;
+    public float JumpCount;
     public float maxJumpCount;
+    bool takejumpcountOnce = false;
+
 
     //Physics
     Vector3 intendedDirection;
@@ -146,15 +148,22 @@ public class CharacterMovement : MonoBehaviour
 
     void calculateGround()
     {
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
 
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
         {
             playerAirTime = 0;
             MovingOnGround = true;
             JumpCount = maxJumpCount;
+            takejumpcountOnce = true;
         }
         else
         {
+            if(takejumpcountOnce == true)
+            {
+                JumpCount = JumpCount - 1;
+                takejumpcountOnce = false;
+
+            }
             MovingOnGround = false;
             playerAirTime += Time.deltaTime;
         }

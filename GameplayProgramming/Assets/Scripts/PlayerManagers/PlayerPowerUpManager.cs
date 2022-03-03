@@ -39,7 +39,7 @@ public class PlayerPowerUpManager : MonoBehaviour
     {
         doubleJumpActive = true;
         doubleJumpTimer = 0;
-        movementScript.maxJumpCount = 2;
+        movementScript.maxJumpCount = 3;
         Debug.Log("Jump Boost Activated!");
     }
 
