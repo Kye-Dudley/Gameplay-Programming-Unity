@@ -6,8 +6,8 @@ public class PlayerScoreManager : MonoBehaviour
 {
     CharacterMovement movementScript;
 
-    [SerializeField]
-    private int score = 0;
+    [HideInInspector]
+    public int score = 0;
 
     public void increaseScore(int increase)
     {
