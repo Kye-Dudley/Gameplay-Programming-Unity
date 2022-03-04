@@ -12,11 +12,14 @@ public class PlayerPowerUpManager : MonoBehaviour
     public float speedBoostTimeLimit = 10;
     private float defaultGroundSpeed;
     private float defaultAirSpeed;
+    public TrailRenderer speedTrail;
 
     //Double Jumping
     bool doubleJumpActive;
     private float doubleJumpTimer;
     public float doubleJumpTimeLimit = 10;
+    public TrailRenderer jumpTrail;
+
 
     private void Start()
     {
@@ -31,8 +34,8 @@ public class PlayerPowerUpManager : MonoBehaviour
         speedBoostTimer = 0;
         movementScript.groundSpeed = movementScript.groundSpeed + 5;
         movementScript.airControl = movementScript.airControl + 5;
+        speedTrail.enabled = true;
         Debug.Log("Speed Boost Activated!");
-
     }
 
     public void activateDoubleJump()
@@ -40,6 +43,7 @@ public class PlayerPowerUpManager : MonoBehaviour
         doubleJumpActive = true;
         doubleJumpTimer = 0;
         movementScript.maxJumpCount = 3;
+        jumpTrail.enabled = true;
         Debug.Log("Jump Boost Activated!");
     }
 
@@ -54,6 +58,7 @@ public class PlayerPowerUpManager : MonoBehaviour
                 movementScript.groundSpeed = defaultGroundSpeed;
                 movementScript.airControl = defaultAirSpeed;
                 speedBoostActive = false;
+                speedTrail.enabled = false;
             }
         }
 
@@ -65,6 +70,7 @@ public class PlayerPowerUpManager : MonoBehaviour
                 Debug.Log("Jump boost Deactivated!");
                 movementScript.maxJumpCount = 1;
                 doubleJumpActive = false;
+                jumpTrail.enabled = false;
             }
         }
     }
