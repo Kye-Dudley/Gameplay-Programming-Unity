@@ -1,10 +1,8 @@
 # Unity Project for Game Play Programming.
 ```diff
-+ Character Movement
-+ Power-Ups and Collectables
-- Switches/Doors/Logic & Cutscenes
-- Follow Camera
++ Character Movement Completed
++ Power-Ups and Collectables Completed
 
-! -
-# -
+- Switches/Doors/Logic & Cutscenes Not Completed
+- Follow Camera Not Completed
 ```
