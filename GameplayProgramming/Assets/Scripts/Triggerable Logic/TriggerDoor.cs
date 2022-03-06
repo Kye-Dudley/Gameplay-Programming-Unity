@@ -28,4 +28,11 @@ public class TriggerDoor : MonoBehaviour
             Debug.Log("Door: " + "Door with the ID of: " + id + " was Closed.");
         }
     }
+
+    private void OnDestroy()
+    {
+        //Unsubscrive our door from the event list when it is destroyed
+        TriggerEvents.LeverScript.onLeverTrigger -= onDoorActivated;
+        TriggerEvents.LeverScript.onLeverTriggerExit -= onDoorDectivated;
+    }
 }
