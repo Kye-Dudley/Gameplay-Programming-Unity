@@ -12,13 +12,23 @@ public class TriggerEvents : MonoBehaviour
         LeverScript = this;
     }
 
-    public event Action onLeverTrigger;
-    public void onLeverActivate()
+    public event Action<int> onLeverTrigger;
+    public void onLeverActivate(int id)
     {
         if(onLeverTrigger != null)
         {
-            onLeverTrigger();
-            Debug.Log("Lever Activate");
+            onLeverTrigger(id);
+            Debug.Log("Event Manager: " + "A Lever with the ID of: " + id + " triggered onLeverActivate.");
+        }
+    }
+
+    public event Action<int> onLeverTriggerExit;
+    public void onLeverDeactivate(int id)
+    {
+        if (onLeverTriggerExit != null)
+        {
+            onLeverTriggerExit(id);
+            Debug.Log("Event Manager: " + "A Lever with the ID of: " + id + " triggered onLeverDeactivate.");
         }
     }
 
