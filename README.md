@@ -1,4 +1,8 @@
 # Unity Project for Game Play Programming.
 ```diff
-- Repository is currently private!
++ Character Movement Completed
++ Power-Ups and Collectables Completed
+
+- Switches/Doors/Logic & Cutscenes Not Completed
+- Follow Camera Not Completed
 ```
