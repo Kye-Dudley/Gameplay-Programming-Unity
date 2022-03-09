@@ -18,7 +18,6 @@ public class TriggerEvents : MonoBehaviour
         if(onLeverTrigger != null)
         {
             onLeverTrigger(id);
-            Debug.Log("Event Manager: " + "A Lever with the ID of: " + id + " triggered onLeverActivate.");
         }
     }
 
@@ -28,7 +27,6 @@ public class TriggerEvents : MonoBehaviour
         if (onLeverTriggerExit != null)
         {
             onLeverTriggerExit(id);
-            Debug.Log("Event Manager: " + "A Lever with the ID of: " + id + " triggered onLeverDeactivate.");
         }
     }
 

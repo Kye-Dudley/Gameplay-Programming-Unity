@@ -22,7 +22,9 @@ public class CharacterMovement : MonoBehaviour
     public float airControl = 7;
     public float JumpCount;
     public float maxJumpCount;
-    bool takejumpcountOnce = false;
+    private bool takejumpcountOnce = false;
+    [HideInInspector]
+    public bool interactInput;
 
 
     //Physics
@@ -53,6 +55,11 @@ public class CharacterMovement : MonoBehaviour
         //Setting the movement vector to our input on X and Y.
         //movementVector is the equivalent of input.getAxis for the new input system.
         movementVector = movementValue.Get<Vector2>();
+    }
+
+    private void OnInteract()
+    {
+        interactInput = true;
     }
 
     private void OnJump()
@@ -118,6 +125,7 @@ public class CharacterMovement : MonoBehaviour
         calculateGround();
 
         jumpInput = false;
+        interactInput = false;
     }
 
     void updateAnimations()

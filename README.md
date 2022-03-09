@@ -3,6 +3,7 @@
 + Character Movement Completed
 + Power-Ups and Collectables Completed
 
-- Switches/Doors/Logic & Cutscenes Not Completed
+! Switches/Doors/Logic & Cutscenes In-Progress
+
 - Follow Camera Not Completed
 ```
