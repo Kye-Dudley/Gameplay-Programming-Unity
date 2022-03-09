@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerID: 0
+  leverStick: {fileID: 3234011298040579597}
 --- !u!1 &1702105258800778859
 GameObject:
   m_ObjectHideFlags: 0
