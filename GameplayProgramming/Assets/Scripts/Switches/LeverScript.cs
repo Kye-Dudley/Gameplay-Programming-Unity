@@ -40,16 +40,24 @@ public class LeverScript : MonoBehaviour
             {
                 TriggerEvents.LeverScript.onLeverActivate(TriggerID);
                 Debug.Log("Lever: " + "Lever with the ID of: " + TriggerID + " was pulled (True).");
-                leverStick.localRotation = Quaternion.Euler(0, 0, 30);
                 isflipped = false;
             }
             else
             {
                 TriggerEvents.LeverScript.onLeverDeactivate(TriggerID);
                 Debug.Log("Lever: " + "Lever with the ID of: " + TriggerID + " was pulled (False).");
-                leverStick.localRotation = Quaternion.Euler(0, 0, -30);
                 isflipped = true;
             }
+        }
+        if(isflipped)
+        {
+            leverStick.localRotation = Quaternion.Lerp(leverStick.transform.localRotation, Quaternion.Euler(0, 0, 30), 5f * Time.deltaTime);
+
+        }
+        else
+        {
+            leverStick.localRotation = Quaternion.Lerp(leverStick.transform.localRotation, Quaternion.Euler(0, 0, -30), 5f * Time.deltaTime);
+
         }
     }
 }
