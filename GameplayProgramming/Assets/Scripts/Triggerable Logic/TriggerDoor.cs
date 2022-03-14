@@ -55,7 +55,7 @@ public class TriggerDoor : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (activateDelay == true)
         {
