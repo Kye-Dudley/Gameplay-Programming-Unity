@@ -30,12 +30,21 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     public void activateSpeedBoost()
     {
-        speedBoostActive = true;
-        speedBoostTimer = 0;
-        movementScript.groundSpeed = movementScript.groundSpeed + 5;
-        movementScript.airControl = movementScript.airControl + 5;
-        speedTrail.enabled = true;
-        Debug.Log("Speed Boost Activated!");
+        if (speedBoostActive == false)
+        {
+            speedBoostActive = true;
+            speedBoostTimer = 0;
+            movementScript.groundSpeed = movementScript.groundSpeed + 5;
+            movementScript.airControl = movementScript.airControl + 5;
+            speedTrail.enabled = true;
+            Debug.Log("Speed Boost Activated!");
+        }
+        else
+        {
+            speedBoostActive = true;
+            speedBoostTimer = 0;
+            Debug.Log("Speed Boost Re-Activated!");
+        }
     }
 
     public void activateDoubleJump()
