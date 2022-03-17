@@ -1986,6 +1986,7 @@ GameObject:
   - component: {fileID: 326976486}
   - component: {fileID: 326976485}
   - component: {fileID: 326976487}
+  - component: {fileID: 326976488}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -2129,6 +2130,36 @@ MonoBehaviour:
   PlayerIndex: -1
   XYAxis: {fileID: 8415657116194456739, guid: e39a2d7ba91b16547befc1a01f15dd61, type: 3}
   ZAxis: {fileID: 0}
+--- !u!114 &326976488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326976484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  m_IgnoreTag: Player
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 5.4
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &349948289
 GameObject:
   m_ObjectHideFlags: 0
@@ -10143,7 +10174,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499619104}
-  m_LocalRotation: {x: 0.1597719, y: -0.00048957573, z: 0.00007923834, w: 0.9871538}
+  m_LocalRotation: {x: 0.1597719, y: -0.0004895927, z: 0.00007924111, w: 0.9871538}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
