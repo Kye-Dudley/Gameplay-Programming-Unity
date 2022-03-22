@@ -9,17 +9,19 @@ public class FollowSpline : MonoBehaviour
     public bool canMove = true;
     public float speed;
     private float distanceProgress;
+    public float offset = 0;
     public enum rotation
     {
         none,
-        YZ,
-        XYZ
+        XYZ,
+        XY,
+        Y
     }
     public rotation updateRotation;
 
     void Start()
     {
-        transform.position = path.path.GetPointAtDistance(0);
+        transform.position = path.path.GetPointAtDistance(0 + offset);
     }
 
     void FixedUpdate()
@@ -34,24 +36,27 @@ public class FollowSpline : MonoBehaviour
     void splineMove()
     {
         distanceProgress += speed * Time.deltaTime;
-        transform.position = path.path.GetPointAtDistance(distanceProgress);
+        transform.position = path.path.GetPointAtDistance(distanceProgress + offset);
     }
 
     void splineRotate()
     {
+        transform.localRotation = path.path.GetRotationAtDistance(distanceProgress + offset);
         if (updateRotation == rotation.none)
         {
             transform.localRotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
         }
         else if (updateRotation == rotation.XYZ)
         {
-            transform.localRotation = path.path.GetRotationAtDistance(distanceProgress);
             transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90);
         }
-        else if (updateRotation == rotation.YZ)
+        else if (updateRotation == rotation.XY)
         {
-            transform.localRotation = path.path.GetRotationAtDistance(distanceProgress);
-            transform.localRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90);
+            transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+        }
+        else if (updateRotation == rotation.Y)
+        {
+            transform.localRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
     }
