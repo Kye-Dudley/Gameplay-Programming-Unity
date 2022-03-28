@@ -19,6 +19,8 @@ public class FollowSpline : MonoBehaviour
     }
     public rotation updateRotation;
 
+    public EndOfPathInstruction onSplineEnd = EndOfPathInstruction.Stop;
+
     void Start()
     {
         transform.position = path.path.GetPointAtDistance(0 + offset);
@@ -36,12 +38,12 @@ public class FollowSpline : MonoBehaviour
     void splineMove()
     {
         distanceProgress += speed * Time.deltaTime;
-        transform.position = path.path.GetPointAtDistance(distanceProgress + offset);
+        transform.position = path.path.GetPointAtDistance(distanceProgress + offset, onSplineEnd);
     }
 
     void splineRotate()
     {
-        transform.localRotation = path.path.GetRotationAtDistance(distanceProgress + offset);
+        transform.localRotation = path.path.GetRotationAtDistance(distanceProgress + offset, onSplineEnd);
         if (updateRotation == rotation.none)
         {
             transform.localRotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
