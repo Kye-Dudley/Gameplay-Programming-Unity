@@ -8,7 +8,7 @@ public class FollowSpline : MonoBehaviour
     public PathCreator path;
     public bool canMove = true;
     public float speed;
-    private float distanceProgress;
+    public float distanceProgress;
     public float offset = 0;
     public enum rotation
     {
