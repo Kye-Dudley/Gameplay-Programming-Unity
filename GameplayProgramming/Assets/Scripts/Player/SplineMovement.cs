@@ -10,6 +10,7 @@ public class SplineMovement : MonoBehaviour
     PlayerInput controller;
     FollowSpline followSplineScript;
     Vector3 currentOffsetPos;
+    public Transform playerAttach;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,13 @@ public class SplineMovement : MonoBehaviour
         if(other.tag == "Player")
         {
             other.GetComponent<PlayerInput>().enabled = false;
+            other.GetComponent<CharacterController>().enabled = false;
+            other.GetComponent<CharacterMovement>().enabled = false;
             controller.enabled = true;
             followSplineScript.canMove = true;
+            other.transform.parent = playerAttach;
+            other.transform.localPosition = Vector3.zero;
+            Destroy(GetComponent<Collider>());
         }
     }
 

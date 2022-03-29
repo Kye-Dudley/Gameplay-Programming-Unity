@@ -10,6 +10,7 @@ public class FollowSpline : MonoBehaviour
     public float speed;
     public float distanceProgress;
     public float offset = 0;
+    private Quaternion initialRotation;
     public enum rotation
     {
         none,
@@ -24,6 +25,7 @@ public class FollowSpline : MonoBehaviour
     void Start()
     {
         transform.position = path.path.GetPointAtDistance(0 + offset);
+        initialRotation = transform.rotation;
     }
 
     void FixedUpdate()
@@ -44,9 +46,9 @@ public class FollowSpline : MonoBehaviour
     void splineRotate()
     {
         transform.localRotation = path.path.GetRotationAtDistance(distanceProgress + offset, onSplineEnd);
-        if (updateRotation == rotation.none)
+        if(updateRotation == rotation.none)
         {
-            transform.localRotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+            transform.localRotation = initialRotation;
         }
         else if (updateRotation == rotation.XYZ)
         {

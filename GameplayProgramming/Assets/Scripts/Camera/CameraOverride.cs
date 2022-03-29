@@ -8,6 +8,7 @@ public class CameraOverride : MonoBehaviour
     [Header("Cinemachine Override Options")]
     public bool overrideFreeLook = false;
     public CinemachineFreeLook freeLook;
+    public GameObject freeLookFollow;
     public GameObject freeLookAt;
 
     [Header("Camera Switch Options")]
@@ -21,13 +22,13 @@ public class CameraOverride : MonoBehaviour
             {
                 Debug.Log("Camera Switched!");
                 newCamera.enabled = true;
-                other.GetComponentInChildren<Camera>().enabled = false;
+//                other.GetComponentInChildren<Camera>().enabled = false;
             }
             if(overrideFreeLook)
             {
                 Debug.Log("FreeLook Switched!");
                 freeLook.LookAt = freeLookAt.transform;
-                freeLook.Follow = transform;
+                freeLook.Follow = freeLookFollow.transform;
             }
         }
     }
