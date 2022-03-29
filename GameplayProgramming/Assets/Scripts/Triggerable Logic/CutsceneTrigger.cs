@@ -11,6 +11,7 @@ public class CutsceneTrigger : MonoBehaviour
     private float CutsceneCurrentTime;
     private bool CutsceneActive = false;
     public bool Replayable = false;
+    private GameObject player;
 
     private void Start()
     {
@@ -20,6 +21,8 @@ public class CutsceneTrigger : MonoBehaviour
 
         GetComponent<Camera>().enabled = false;
         playerCam = Camera.main;
+        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     private void onCutsceneActive(int id)
@@ -28,7 +31,7 @@ public class CutsceneTrigger : MonoBehaviour
         {
             GetComponent<Camera>().enabled = true;
             playerCam.enabled = false;
-            FindObjectOfType<PlayerInput>().enabled = false;
+            player.GetComponent<PlayerInput>().enabled = false;
             Debug.Log("Cutscene: " + "Cutscene with the ID of: " + id + " was Activated.");
             CutsceneActive = true;
         }
@@ -40,7 +43,7 @@ public class CutsceneTrigger : MonoBehaviour
         {
             GetComponent<Camera>().enabled = false;
             playerCam.enabled = true;
-            FindObjectOfType<PlayerInput>().enabled = true;
+            player.GetComponent<PlayerInput>().enabled = true;
             CutsceneActive = false;
             if(Replayable == true)
             {
