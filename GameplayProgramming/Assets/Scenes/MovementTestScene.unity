@@ -7291,7 +7291,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.13404997, y: -0.00049149623, z: 0.0000664851, w: 0.9909745}
+  m_LocalRotation: {x: 0.13404997, y: -0.0004914621, z: 0.000066480505, w: 0.9909745}
   m_LocalPosition: {x: 0.0071615633, y: 3.9899998, z: -8.599997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -9989,7 +9989,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321604224}
-  m_LocalRotation: {x: 0.13404995, y: -0.0004914962, z: 0.0000664851, w: 0.9909745}
+  m_LocalRotation: {x: 0.13404995, y: -0.00049146207, z: 0.0000664805, w: 0.9909745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10226,7 +10226,7 @@ GameObject:
   - component: {fileID: 1370601724}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
