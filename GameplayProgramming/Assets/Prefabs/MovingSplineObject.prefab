@@ -144,8 +144,10 @@ MonoBehaviour:
   path: {fileID: 0}
   canMove: 1
   speed: 1
+  distanceProgress: 0
   offset: 0
   updateRotation: 0
+  onSplineEnd: 2
 --- !u!1 &5458713728167877213
 GameObject:
   m_ObjectHideFlags: 0

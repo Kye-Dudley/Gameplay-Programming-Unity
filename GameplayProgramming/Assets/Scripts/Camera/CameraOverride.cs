@@ -5,31 +5,32 @@ using Cinemachine;
 
 public class CameraOverride : MonoBehaviour
 {
-    [Header("Cinemachine Override Options")]
+    [Header("Camera Switching Settings")]
+    public bool switchCamera = false;
+    public Camera newCamera;
+    private Camera mainCam;
+/*
+    [Header("Cinemachine Follow Camera Override Settings")]
     public bool overrideFreeLook = false;
     public CinemachineFreeLook freeLook;
     public GameObject freeLookFollow;
     public GameObject freeLookAt;
-
-    [Header("Camera Switch Options")]
-    public bool switchCamera = false;
-    public Camera newCamera;
-    private void OnTriggerEnter(Collider other)
+*/
+    public void OverrideCamera()
     {
-        if(other.tag == "Player")
+        if(switchCamera)
         {
-            if(switchCamera)
-            {
-                Debug.Log("Camera Switched!");
-                newCamera.enabled = true;
-//                other.GetComponentInChildren<Camera>().enabled = false;
-            }
-            if(overrideFreeLook)
-            {
-                Debug.Log("FreeLook Switched!");
-                freeLook.LookAt = freeLookAt.transform;
-                freeLook.Follow = freeLookFollow.transform;
-            }
+            mainCam = Camera.main;
+            mainCam.enabled = false;
+            newCamera.enabled = true;
+        }
+    }
+    public void ReturnToMainCamera()
+    {
+        if(switchCamera)
+        {
+            mainCam.enabled = true;
+            newCamera.enabled = false;
         }
     }
 }

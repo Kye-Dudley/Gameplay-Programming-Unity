@@ -6,13 +6,13 @@ using Cinemachine;
 
 public class SplineMovement : MonoBehaviour
 {
+    private bool isActive;
     private Vector2 movementVector;
     PlayerInput controller;
     FollowSpline followSplineScript;
-    Vector3 currentOffsetPos;
     public Transform playerAttach;
+    private GameObject player;
 
-    // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerInput>();
@@ -30,19 +30,38 @@ public class SplineMovement : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<PlayerInput>().enabled = false;
-            other.GetComponent<CharacterController>().enabled = false;
-            other.GetComponent<CharacterMovement>().enabled = false;
+            isActive = true;
+            player = other.gameObject;
+
+            player.GetComponent<PlayerInput>().enabled = false;
+            player.GetComponent<CharacterMovement>().enabled = false;
+            player.transform.parent = playerAttach;
+            player.transform.localPosition = Vector3.zero;
+
             controller.enabled = true;
             followSplineScript.canMove = true;
-            other.transform.parent = playerAttach;
-            other.transform.localPosition = Vector3.zero;
+
             Destroy(GetComponent<Collider>());
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if(isActive)
+        {
+            if (followSplineScript.gameObject.transform.position != followSplineScript.path.path.GetPointAtDistance(followSplineScript.distanceProgress))
+            {
+                isActive = false;
+                Debug.Log("player has reached end!");
+
+                GetComponent<CameraOverride>().newCamera.enabled = false;
+                player.GetComponent<PlayerInput>().enabled = true;
+                player.GetComponent<CharacterMovement>().enabled = true;
+                player.transform.parent = null;
+
+                controller.enabled = false;
+                followSplineScript.canMove = false;
+
+            }
+        }
     }
 }

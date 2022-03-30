@@ -34,13 +34,15 @@ public class Cannon : MonoBehaviour
             followSplineScript.canMove = true;
             followSplineScript.path = path;
             followSplineScript.updateRotation = FollowSpline.rotation.Y;
-            other.GetComponent<CharacterController>().enabled = false;
+//            other.GetComponent<CharacterController>().enabled = false;
             other.GetComponent<CharacterMovement>().enabled = false;
             followSplineScript.onSplineEnd = EndOfPathInstruction.Stop;
             if (animationToPlay == anims.Roll)
             {
                 other.GetComponentInChildren<Animator>().SetBool("Rolling", true);
             }
+            GetComponent<CameraOverride>().OverrideCamera();
+
         }
     }
     private void Update()
@@ -49,14 +51,15 @@ public class Cannon : MonoBehaviour
         {
             if (player.transform.position != path.path.GetPointAtDistance(followSplineScript.distanceProgress))
             {
-                player.GetComponent<CharacterController>().enabled = true;
+                playerActive = false;
                 player.GetComponent<CharacterMovement>().enabled = true;
                 Destroy(followSplineScript);
                 if (animationToPlay == anims.Roll)
                 {
                     player.GetComponentInChildren<Animator>().SetBool("Rolling", false);
                 }
-                playerActive = false;
+                GetComponent<CameraOverride>().ReturnToMainCamera();
+
             }
         }
     }
