@@ -23,7 +23,9 @@ public class SplineMovement : MonoBehaviour
     private void OnMove(InputValue movementValue)
     {
         movementVector = movementValue.Get<Vector2>();
-        transform.localPosition = new Vector3(movementVector.x * 2, movementVector.y * 2, 0);
+//        transform.localPosition = new Vector3(movementVector.x * 2, movementVector.y * 2, 0);
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +52,8 @@ public class SplineMovement : MonoBehaviour
     {
         if(isActive)
         {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(movementVector.x * 2, movementVector.y * 2, 0), 5 * Time.deltaTime);
+
             if (followSplineScript.gameObject.transform.position != followSplineScript.path.path.GetPointAtDistance(followSplineScript.distanceProgress))
             {
                 isActive = false;
