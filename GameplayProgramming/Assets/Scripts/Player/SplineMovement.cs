@@ -37,6 +37,8 @@ public class SplineMovement : MonoBehaviour
             player.GetComponent<CharacterMovement>().enabled = false;
             player.transform.parent = playerAttach;
             player.transform.localPosition = Vector3.zero;
+            player.GetComponentInChildren<Animator>().SetBool("LeanWobble", true);
+            player.transform.rotation = Quaternion.Euler(0, 90, 0);
 
             controller.enabled = true;
             followSplineScript.canMove = true;
@@ -57,11 +59,11 @@ public class SplineMovement : MonoBehaviour
                 followSplineScript.canMove = false;
 
                 GetComponent<CameraOverride>().ReturnToMainCamera();
+                player.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 player.GetComponent<PlayerInput>().enabled = true;
                 player.GetComponent<CharacterMovement>().enabled = true;
                 player.transform.parent = null;
-
-
+                player.GetComponentInChildren<Animator>().SetBool("LeanWobble", false);
 
             }
         }
