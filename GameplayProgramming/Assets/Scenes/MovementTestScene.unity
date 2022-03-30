@@ -9476,7 +9476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 1384942852}
   canMove: 0
-  speed: 20
+  speed: 10
   distanceProgress: 0
   offset: 0
   updateRotation: 2

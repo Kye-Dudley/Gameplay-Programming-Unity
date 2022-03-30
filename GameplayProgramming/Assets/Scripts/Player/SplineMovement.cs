@@ -40,7 +40,7 @@ public class SplineMovement : MonoBehaviour
 
             controller.enabled = true;
             followSplineScript.canMove = true;
-
+            GetComponent<CameraOverride>().OverrideCamera();
             Destroy(GetComponent<Collider>());
         }
     }
@@ -53,13 +53,15 @@ public class SplineMovement : MonoBehaviour
                 isActive = false;
                 Debug.Log("player has reached end!");
 
-                GetComponent<CameraOverride>().newCamera.enabled = false;
+                controller.enabled = false;
+                followSplineScript.canMove = false;
+
+                GetComponent<CameraOverride>().ReturnToMainCamera();
                 player.GetComponent<PlayerInput>().enabled = true;
                 player.GetComponent<CharacterMovement>().enabled = true;
                 player.transform.parent = null;
 
-                controller.enabled = false;
-                followSplineScript.canMove = false;
+
 
             }
         }
