@@ -41,7 +41,10 @@ public class Cannon : MonoBehaviour
             {
                 other.GetComponentInChildren<Animator>().SetBool("Rolling", true);
             }
-            GetComponent<CameraOverride>().OverrideCamera();
+            if(GetComponent<CameraOverride>())
+            {
+                GetComponent<CameraOverride>().OverrideCamera();
+            }
 
         }
     }
@@ -58,7 +61,10 @@ public class Cannon : MonoBehaviour
                 {
                     player.GetComponentInChildren<Animator>().SetBool("Rolling", false);
                 }
-                GetComponent<CameraOverride>().ReturnToMainCamera();
+                if (GetComponent<CameraOverride>())
+                {
+                    GetComponent<CameraOverride>().ReturnToMainCamera();
+                }
 
             }
         }
