@@ -220,7 +220,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 301
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -13248,7 +13248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5458713727116706176, guid: f78ada4ca7bee784e93ba77fd46a2f53, type: 3}
       propertyPath: updateRotation
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5458713727116706179, guid: f78ada4ca7bee784e93ba77fd46a2f53, type: 3}
       propertyPath: m_Name
