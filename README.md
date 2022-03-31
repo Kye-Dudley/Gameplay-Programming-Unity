@@ -7,6 +7,6 @@ If the project opens blank, open the scene inside the 'Scenes' folder.
 + Switches/Doors/Logic & Cutscenes Completed
 + Follow Camera Completed
 + Spline Gameplay Controller Complete
-- Platforming Sequence In-Progress
+! Platforming Sequence In-Progress
 - AI Enemies Not Completed
 ```
