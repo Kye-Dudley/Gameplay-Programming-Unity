@@ -25,6 +25,7 @@ public class TriggerTeleport : MonoBehaviour
         if(reset)
         {
             movement.enabled = true;
+            reset = false;
         }
     }
 }
