@@ -6,6 +6,7 @@ public class AIVision : MonoBehaviour
 {
     private AIRoam roamScript;
     private AIFollow followScript;
+    private GameObject Player;
 
     private void Start()
     {
@@ -17,19 +18,31 @@ public class AIVision : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Debug.Log("Enemy can see player!");
-            followScript.moveTo = other.gameObject;
-            roamScript.enabled = false;
-            followScript.enabled = true;
+            Player = other.gameObject;
+            playerFound();
         }    
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Enemy can no longer see player!");
-            followScript.enabled = false;
-            roamScript.enabled = true;
+            followScript.canSeePlayer = false;
         }
+    }
+
+    public void playerFound()
+    {
+        Debug.Log("Enemy can see player!");
+        followScript.moveTo = Player;
+        roamScript.enabled = false;
+        followScript.enabled = true;
+        followScript.canSeePlayer = true;
+    }
+
+    public void playerLost()
+    {
+        Debug.Log("Enemy can no longer see player!");
+        followScript.enabled = false;
+        roamScript.enabled = true;
     }
 }
