@@ -60,6 +60,7 @@ public class CharacterMovement : MonoBehaviour
     private void OnInteract()
     {
         interactInput = true;
+        animator.SetTrigger("Attacking");
     }
 
     private void OnJump()
