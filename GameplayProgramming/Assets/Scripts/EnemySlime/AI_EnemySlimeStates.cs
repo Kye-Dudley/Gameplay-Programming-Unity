@@ -29,7 +29,11 @@ public class AI_EnemySlimeStates : MonoBehaviour
 
     private void Awake()
     {
-        if(currentSlimeState == slimeStates.Roam)
+        canSeePlayer = false;
+
+        currentSlimeState = slimeStates.Roam;
+
+        if (currentSlimeState == slimeStates.Roam)
         {
             navAgent = GetComponent<NavMeshAgent>();
 

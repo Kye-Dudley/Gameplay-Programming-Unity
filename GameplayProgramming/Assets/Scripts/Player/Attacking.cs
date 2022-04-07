@@ -7,17 +7,26 @@ public class Attacking : MonoBehaviour
     private CharacterMovement movement;
 
     public bool isAttacking;
+    private bool damageOnce = true;
     private float attackTimer = 0.5f;
     private float currentAttackTime = 0;
     private void Start()
     {
         movement = GetComponentInParent<CharacterMovement>();
     }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Enemy")
         {
-            other.GetComponentInChildren<AIHealth>().EnemyTakeDamage(1);
+            if(isAttacking)
+            {
+                if(damageOnce)
+                {
+                    other.GetComponentInChildren<AI_Slime_Split>().takeDamage(1);
+                    damageOnce = false;
+                }
+            }
         }
     }
 
@@ -40,13 +49,13 @@ public class Attacking : MonoBehaviour
             {
 //                movement.enabled = true;
                 isAttacking = false;
+                damageOnce = true;
             }
             else
             {
 //                movement.enabled = false;
                 transform.parent.GetComponentInChildren<Animator>().SetTrigger("Attacking");
                 currentAttackTime = currentAttackTime + Time.deltaTime;
-                Debug.Log(currentAttackTime);
             }
         }
         else
