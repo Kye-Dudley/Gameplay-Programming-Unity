@@ -32,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 velocity;
     Vector3 velocityXZ;
     public float gravity = 9.81f;
-    bool MovingOnGround = false;
+    public bool MovingOnGround = false;
     bool resetGrav;
 
     private float cyoteTime = 0.15f;
@@ -60,7 +60,6 @@ public class CharacterMovement : MonoBehaviour
     private void OnInteract()
     {
         interactInput = true;
-        animator.SetTrigger("Attacking");
     }
 
     private void OnJump()

@@ -49,11 +49,14 @@ public class AIHealth : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "PlayerWeapon")
         {
-            EnemyTakeDamage(3);
+            if(other.GetComponentInChildren<Attacking>().isAttacking == true)
+            {
+                EnemyTakeDamage(1);
+            }
         }
     }
     public void EnemyTakeDamage(int damage)
