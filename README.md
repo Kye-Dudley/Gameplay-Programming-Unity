@@ -8,5 +8,5 @@ If the project opens blank, open the scene inside the 'Scenes' folder.
 + Follow Camera Complete
 + Spline Gameplay Controller Complete
 + Platforming Sequence Complete
-! AI Enemies In-Progress
++ AI Enemies Complete
 ```
