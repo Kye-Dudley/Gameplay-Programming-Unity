@@ -8,6 +8,7 @@ public class Attacking : MonoBehaviour
 
     public bool isAttacking;
     private bool damageOnce = true;
+    private bool animOnce = true;
     private float attackTimer = 0.5f;
     private float currentAttackTime = 0;
     private void Start()
@@ -47,14 +48,20 @@ public class Attacking : MonoBehaviour
 
             if(currentAttackTime >= attackTimer)
             {
-//                movement.enabled = true;
                 isAttacking = false;
                 damageOnce = true;
+                animOnce = true;
             }
             else
             {
-//                movement.enabled = false;
-                transform.parent.GetComponentInChildren<Animator>().SetTrigger("Attacking");
+                if(animOnce)
+                {
+                    Debug.Log("ATTACK");
+                    transform.parent.GetComponentInChildren<Animator>().SetTrigger("Attacking");
+                    animOnce = false;
+                }
+
+
                 currentAttackTime = currentAttackTime + Time.deltaTime;
             }
         }
